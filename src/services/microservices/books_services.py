@@ -173,7 +173,6 @@ class BooksServices:
         # El archivo OPF contiene los metadatos del libro. Generamos su path.
         opf_path = extracted_folder / _rootfile_.get('full-path')
         metadata = self.read_opf(opf_path, saving_folder)
-        print(metadata)
         metadata['metadata']['metadata_base_path'] = str(opf_path.parent)
         metadata['metadata']['opf_path'] = str(opf_path)
         return metadata
