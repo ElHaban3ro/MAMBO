@@ -91,7 +91,7 @@ class UsersRouter:
             status_code=status.HTTP_200_OK,
             status_title='Ok',
             content_response={
-                'content': edited_user.serialize(return_books=False)
+                'content': edited_user.serialize()
             }
             )
         
@@ -231,7 +231,7 @@ class UsersRouter:
                 status_code=status.HTTP_200_OK,
                 status_title='Ok',
                 content_response={
-                    'content': user.serialize(return_books=False)
+                    'content': user.serialize()
                 }
             )
         

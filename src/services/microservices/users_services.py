@@ -46,7 +46,7 @@ class UsersServices:
 
     def get_all_users(self) -> list[UsersModel]:
         with Session(self.engine) as session:
-            return session.query(UsersModel).options(joinedload(UsersModel.books)).all()
+            return session.query(UsersModel).all()
         
     def get_user(self, email: str) -> Optional[UsersModel]:
         # Normalizamos el email para evitar problemas de mayúsculas/minúsculas y espacios
@@ -55,13 +55,12 @@ class UsersServices:
             return (
                 session.query(UsersModel)
                 .filter(UsersModel.email.ilike(email))
-                .options(joinedload(UsersModel.books))
                 .first()
             )
             
     def get_user_by_id(self, user_id: int) -> Optional[UsersModel]:
         with Session(self.engine) as session:
-            return session.query(UsersModel).filter(UsersModel.id == user_id).options(joinedload(UsersModel.books)).first()
+            return session.query(UsersModel).filter(UsersModel.id == user_id).first()
 
     def user_exist(self, email: str) -> bool:
         email = self._norm_email(email)
@@ -69,7 +68,6 @@ class UsersServices:
             return bool(
                 session.query(UsersModel)
                 .filter(UsersModel.email.ilike(email))
-                .options(joinedload(UsersModel.books))
                 .first()
             )
 
@@ -136,7 +134,6 @@ class UsersServices:
             user = (
                 session.query(UsersModel)
                 .filter(UsersModel.email.ilike(email))
-                .options(joinedload(UsersModel.books))
                 .first()
             )
             if not user:
@@ -192,7 +189,6 @@ class UsersServices:
             user = (
                 session.query(UsersModel)
                 .filter(UsersModel.email.ilike(email))
-                .options(joinedload(UsersModel.books))
                 .first()
             )
             if not user:
@@ -213,7 +209,6 @@ class UsersServices:
             user = (
                 session.query(UsersModel)
                 .filter(UsersModel.email.ilike(email))
-                .options(joinedload(UsersModel.books))
                 .first()
             )
             if name:

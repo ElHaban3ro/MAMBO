@@ -2,7 +2,6 @@ import os
 from sqlalchemy import Column, Integer, String, ARRAY
 from sqlalchemy.orm import relationship
 from src.db.declarative_base import Base
-from src.models.books_model import BooksModel
 
 class UsersModel(Base):
     __tablename__ = 'users'
@@ -16,9 +15,8 @@ class UsersModel(Base):
     user_type = Column(String, default='google')  # e.g., 'google', 'email'.
     role = Column(String, default='user')  # e.g., 'user', 'admin'.
 
-    books = relationship(BooksModel, back_populates='owner', cascade="all, delete-orphan")
 
-    def serialize(self, retireve_password: bool = False, return_books: bool = True) -> dict[str, object]:
+    def serialize(self, retireve_password: bool = False) -> dict[str, object]:
         API_URL = os.getenv("API_URL", "http://127.0.0.1:3030")
         return {
             'id': self.id,
@@ -27,6 +25,5 @@ class UsersModel(Base):
             'password': self.password if retireve_password else None,
             'image': self.image if self.image else f'{API_URL}/users/default-avatar',
             'type': self.user_type,
-            'role': self.role,
-            'books': [book.id for book in self.books] if return_books else []
+            'role': self.role
         }

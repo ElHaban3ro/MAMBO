@@ -39,7 +39,7 @@ class DbConnection:
     
     def gen_env_base(self) -> None:
         settings = AdminSeedSettings(
-            DB_NAME='MAMBO',
+            DB_NAME='mambo',
             DB_USER='postgres',
             DB_PASSWORD='dbpassword',
             DB_HOST='localhost',

@@ -2,8 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.api.routers.general_router import GeneralRouter
 from src.api.routers.users_router import UsersRouter
-from src.api.routers.books_router import BooksRouter
-from src.api.routers.utils_router import UtilsRouter
 from src.api.routers.admin_router import AdminRouter
 import uvicorn
 import os
@@ -50,7 +48,7 @@ class FastApi:
         self.start()
 
     def add_routers(self) -> None:
-        routers = [GeneralRouter, UsersRouter, BooksRouter, UtilsRouter, AdminRouter]
+        routers = [GeneralRouter, UsersRouter, AdminRouter]
         
         for router in routers:
             router = router(self.services)
