@@ -4,7 +4,7 @@ from typing import List, Dict, Optional, Tuple
 from pydantic import EmailStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-ADMIN_SLOTS: Tuple[int] = (1)
+ADMIN_SLOTS: Tuple[int] = (1,)
 
 class AdminSeedSettings(BaseSettings):
     DB_NAME: str
