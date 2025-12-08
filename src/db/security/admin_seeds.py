@@ -42,6 +42,9 @@ class AdminSeedSettings(BaseSettings):
     ADMIN4_USERNAME: Optional[str] = None
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=False)
+    
+    def __str__(self):
+        return super().__str__()
 
 # normalizacion
 def _norm(s: Optional[str]) -> str:

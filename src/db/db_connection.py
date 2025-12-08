@@ -2,10 +2,14 @@ from dotenv import load_dotenv
 import os
 from sqlalchemy import create_engine, URL
 from src.db.declarative_base import Base
-
+from src.db.security.admin_seeds import AdminSeedSettings
 class DbConnection:
     def __init__(self) -> None:
         load_dotenv()
+        env_validator = self.env_validator()
+        if not env_validator:
+            self.gen_env_base()
+            raise EnvironmentError("Missing required environment variables in .env file.")
         self.DB_NAME: str = os.getenv('DB_NAME', 'skoob')
         self.DB_USER: str = os.getenv('DB_USER', 'postgres')
         self.DB_PASSWORD: str = os.getenv('DB_PASSWORD', 'password')
@@ -23,3 +27,49 @@ class DbConnection:
             database=self.DB_NAME
         ))
         Base.metadata.create_all(self.engine)
+        
+    def env_validator(self) -> bool:
+        if not os.path.exists('.env'):
+            return False
+        required_vars = ['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_PORT']
+        for var in required_vars:
+            if os.getenv(var) is None:
+                return False
+        return True
+    
+    def gen_env_base(self) -> None:
+        settings = AdminSeedSettings(
+            DB_NAME='MAMBO',
+            DB_USER='postgres',
+            DB_PASSWORD='dbpassword',
+            DB_HOST='localhost',
+            DB_PORT=5432,
+            JWT_SECRET_KEY='supersecretkey',
+            GOOGLE_SECRET_KEY='xxxxxxxxxxxxxxxxxxxxxxxxx',
+            GOOGLE_CLIENT_ID='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com',
+            GOOGLE_GEMINI_API_KEY='xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            GOOGLE_REDIRECT_CALLBACK_URI='http://localhost:3030/users/auth/google/callback',
+            GOOGLE_REDIRECT_FRONTEND_URI='http://localhost:3000',
+            API_URL='http://127.0.0.1:3030',
+
+            # ===== admins por defecto =====
+            ADMIN1_NAME='FerBackend0!!2',
+            ADMIN1_EMAIL='ferdhaban@gmail.com',
+            ADMIN1_PASSWORD='Sup3r:-admin!',
+
+            ADMIN2_NAME='blas!_f3m0',
+            ADMIN2_EMAIL='test@gmail.com',
+            ADMIN2_PASSWORD='Adm1n_bl4s_is_@w3some',
+
+            ADMIN3_NAME='cl4us1_m4r',
+            ADMIN3_EMAIL='oa@gmail.compile',
+            ADMIN3_PASSWORD='th3b3st_fr0ntend!',
+
+            ADMIN4_NAME='3r1ick',
+            ADMIN4_EMAIL='whathehell@sapo.com',
+            ADMIN4_PASSWORD='3r1k_is_gr34t!',
+        )
+        
+        for key, value in settings.model_dump().items():
+            with open('.env', 'a') as f:
+                f.write(f"{key}={value}\n")
