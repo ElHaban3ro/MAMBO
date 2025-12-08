@@ -56,18 +56,6 @@ class DbConnection:
             ADMIN1_NAME='FerBackend0!!2',
             ADMIN1_EMAIL='ferdhaban@gmail.com',
             ADMIN1_PASSWORD='Sup3r:-admin!',
-
-            ADMIN2_NAME='blas!_f3m0',
-            ADMIN2_EMAIL='test@gmail.com',
-            ADMIN2_PASSWORD='Adm1n_bl4s_is_@w3some',
-
-            ADMIN3_NAME='cl4us1_m4r',
-            ADMIN3_EMAIL='oa@gmail.compile',
-            ADMIN3_PASSWORD='th3b3st_fr0ntend!',
-
-            ADMIN4_NAME='3r1ick',
-            ADMIN4_EMAIL='whathehell@sapo.com',
-            ADMIN4_PASSWORD='3r1k_is_gr34t!',
         )
         
         for key, value in settings.model_dump().items():

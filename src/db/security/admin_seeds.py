@@ -4,7 +4,7 @@ from typing import List, Dict, Optional, Tuple
 from pydantic import EmailStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-ADMIN_SLOTS: Tuple[int] = (1, 2, 3, 4)
+ADMIN_SLOTS: Tuple[int] = (1)
 
 class AdminSeedSettings(BaseSettings):
     DB_NAME: str
@@ -25,22 +25,7 @@ class AdminSeedSettings(BaseSettings):
     ADMIN1_EMAIL: Optional[EmailStr] = None
     ADMIN1_PASSWORD: Optional[str] = None
     ADMIN1_USERNAME: Optional[str] = None
-
-    ADMIN2_NAME: Optional[str] = None
-    ADMIN2_EMAIL: Optional[EmailStr] = None
-    ADMIN2_PASSWORD: Optional[str] = None
-    ADMIN2_USERNAME: Optional[str] = None
-
-    ADMIN3_NAME: Optional[str] = None
-    ADMIN3_EMAIL: Optional[EmailStr] = None
-    ADMIN3_PASSWORD: Optional[str] = None
-    ADMIN3_USERNAME: Optional[str] = None
-
-    ADMIN4_NAME: Optional[str] = None
-    ADMIN4_EMAIL: Optional[EmailStr] = None
-    ADMIN4_PASSWORD: Optional[str] = None
-    ADMIN4_USERNAME: Optional[str] = None
-
+    
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=False)
     
     def __str__(self):
