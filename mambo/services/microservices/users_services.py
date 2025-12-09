@@ -4,8 +4,8 @@ from fastapi import Depends, HTTPException, Request, Response
 from fastapi.security import OAuth2PasswordBearer, APIKeyCookie
 from sqlalchemy import Engine
 from sqlalchemy.orm import Session, joinedload
-from src.models.users_model import UsersModel
-from src.services.microservices.security_services import SecurityServices
+from mambo.models.users_model import UsersModel
+from mambo.services.microservices.security_services import SecurityServices
 import datetime
 import jwt
 from jwt.exceptions import InvalidTokenError
@@ -26,7 +26,7 @@ class UsersServices:
         return (username or "").strip().lower()
 
     def get_admin_env_index(self) -> dict:
-        from src.db.security.admin_seeds import admin_env_index
+        from mambo.db.security.admin_seeds import admin_env_index
         return admin_env_index()
 
     def ensure_admin_from_username(self, username: str) -> UsersModel | None:

@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 import os
 from sqlalchemy import create_engine, URL
-from src.db.declarative_base import Base
-from src.db.security.admin_seeds import AdminSeedSettings
+from mambo.db.declarative_base import Base
+from mambo.db.security.admin_seeds import AdminSeedSettings
 class DbConnection:
     def __init__(self) -> None:
         load_dotenv()

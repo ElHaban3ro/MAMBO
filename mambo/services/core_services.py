@@ -1,6 +1,6 @@
 import os
-from src.services.microservices.users_services import UsersServices
-from src.services.microservices.security_services import SecurityServices
+from mambo.services.microservices.users_services import UsersServices
+from mambo.services.microservices.security_services import SecurityServices
 from sqlalchemy import Engine
 from dotenv import load_dotenv
 

@@ -2,9 +2,9 @@
 from fastapi import APIRouter, Depends, status, UploadFile, File, HTTPException
 from fastapi.responses import Response, FileResponse
 from typing import Annotated, Optional
-from src.services.core_services import CoreServices
-from src.utils.http.response_utils import HttpResponses
-from src.models.users_model import UsersModel
+from mambo.services.core_services import CoreServices
+from mambo.utils.http.response_utils import HttpResponses
+from mambo.models.users_model import UsersModel
 
 class AdminRouter:
     def __init__(self, services: CoreServices) -> None:

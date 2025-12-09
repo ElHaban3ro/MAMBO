@@ -1,7 +1,7 @@
 import os
 from sqlalchemy import Column, Integer, String, ARRAY
 from sqlalchemy.orm import relationship
-from src.db.declarative_base import Base
+from mambo.db.declarative_base import Base
 
 class UsersModel(Base):
     __tablename__ = 'users'

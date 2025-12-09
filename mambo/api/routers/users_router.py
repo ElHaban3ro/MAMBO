@@ -2,9 +2,9 @@ import httpx
 import os
 from fastapi import APIRouter, HTTPException, status, Depends, Request
 from fastapi.responses import FileResponse, Response, RedirectResponse
-from src.services.core_services import CoreServices
-from src.utils.http.response_utils import HttpResponses
-from src.models.users_model import UsersModel
+from mambo.services.core_services import CoreServices
+from mambo.utils.http.response_utils import HttpResponses
+from mambo.models.users_model import UsersModel
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from typing import Annotated, Union

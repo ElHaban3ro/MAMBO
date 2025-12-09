@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.api.routers.general_router import GeneralRouter
-from src.api.routers.users_router import UsersRouter
-from src.api.routers.admin_router import AdminRouter
+from mambo.api.routers.general_router import GeneralRouter
+from mambo.api.routers.users_router import UsersRouter
+from mambo.api.routers.admin_router import AdminRouter
 import uvicorn
 import os
-from src.services.core_services import CoreServices
+from mambo.services.core_services import CoreServices
 from dotenv import load_dotenv
-from src.db.security.admin_seeds import default_admins_from_env
+from mambo.db.security.admin_seeds import default_admins_from_env
 from contextlib import asynccontextmanager
 
 class FastApi:

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status, Depends, Request
 from fastapi.responses import Response, FileResponse
-from src.services.core_services import CoreServices
-from src.utils.http.response_utils import HttpResponses
+from mambo.services.core_services import CoreServices
+from mambo.utils.http.response_utils import HttpResponses
 from pathlib import Path
 
 from typing import Annotated
