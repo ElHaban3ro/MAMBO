@@ -25,7 +25,7 @@ def init_project(target: Path):
         }
     }
     
-    with open(target / "mambo_config.json", "w+") as config_file:
+    with open(actual_path / "mambo_config.json", "w+") as config_file:
         config_file.write(json.dumps(config, indent=4))
     
     print('\n\t\t- MAMBOFRAME project initialized successfully.')

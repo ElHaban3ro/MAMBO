@@ -29,7 +29,7 @@ class DbConnection:
         Base.metadata.create_all(self.engine)
         
     def env_validator(self) -> bool:
-        if not os.path.exists('.env'):
+        if not os.path.exists('./.env'):
             return False
         required_vars = ['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_PORT']
         for var in required_vars:
@@ -59,5 +59,5 @@ class DbConnection:
         )
         
         for key, value in settings.model_dump().items():
-            with open('.env', 'a') as f:
+            with open('./.env', 'a') as f:
                 f.write(f"{key}={value}\n")
